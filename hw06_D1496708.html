@@ -1,0 +1,565 @@
+<!-- 宣告使用 HTML5；DOCTYPE 是文件類型宣告，不需要結束標籤。 -->
+<html lang="zh-Hant">
+<!-- html 包住整份文件；lang="zh-Hant" 表示主要使用繁體中文。 -->
+<head>
+    <!-- head 放網頁資訊；這些資訊不會直接成為頁面中的報導文字。 -->
+    <meta charset="UTF-8">
+    <!-- UTF-8 可正確處理中文；meta 是空元素，不寫結束標籤。 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport 讓行動裝置使用裝置寬度；不代表固定寬度的圖片會自動縮小。 -->
+    <meta name="description" content="走進台中公園，認識百年歷史、湖心亭與日月湖，透過景點清單、有框表格、照片、影片與 Google 地圖閱讀城市故事。">
+    <!-- description 提供網頁摘要；author 標示作者。 -->
+    <meta name="author" content="HTML 課程示範作者">
+    <!-- robots 表達索引意圖；本機檔案不會因此自動被搜尋引擎收錄。 -->
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph 提供分享摘要，不是搜尋排名保證。 -->
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:title" content="台中公園報導｜城市裡的百年風景">
+    <meta property="og:description" content="認識台中公園的百年歷史、湖心亭與日月湖，搭配景點表格、照片、影片及位置地圖。">
+    <meta property="og:image" content="https://www.taiwan.net.tw/att/1/big_scenic_spots/pic_A12-00079_10.jpg">
+    <meta property="og:image:alt" content="台中公園日月湖上的湖心亭">
+    <meta property="article:published_time" content="2026-10-07">
+    <meta property="article:modified_time" content="2026-10-21">
+    <!-- 正式上線後，再以真實公開網址加入 canonical 及 og:url；不要使用本機或虛構網址。 -->
+    <title>台中公園報導｜HW06_d1496708_阮娥媚</title>
+    <!-- title 顯示在瀏覽器分頁；與 body 中的 h1 用途不同。 -->
+    <!--
+        方法二：style 元素放在 head，集中設定整頁共用樣式。
+        CSS 規則的結構是「選擇器 { 屬性: 值; }」，CSS 註解使用 /* ... */。
+        元素選擇器如 body、h2；類別選擇器如 .video-frame；ID 選擇器如 #tips。
+        方法一的行內樣式，請在本文搜尋「方法一」查看三處示範。
+    -->
+    <style>
+        /* 1. 盒子尺寸與全頁文字：border-box 讓寬度包含內距與框線。 */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            font-size: 17px;
+            line-height: 1.85;
+            color: #263d35;
+            background-color: #f2f4ed;
+        }
+
+        /* 2. 頁首：背景、框線、圓角與內距共同建立報導的視覺層次。 */
+        header {
+            padding: 34px 36px;
+            background-color: #173f35;
+            color: #fffdf5;
+            border-top: 6px solid #c89d56;
+            border-radius: 6px;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: 2rem;
+            line-height: 1.4;
+            letter-spacing: 0.04em;
+        }
+
+        header p {
+            margin: 10px 0;
+        }
+
+        small {
+            font-size: 0.85em;
+            font-style: normal;
+        }
+
+        /* 3. 導覽與連結：inline-block 讓連結可設定完整的點選內距。 */
+        nav {
+            margin: 24px 0;
+            padding: 20px 24px;
+            background-color: #e6ecdf;
+            border: 1px solid #cbd5c4;
+            border-radius: 6px;
+        }
+
+        nav h2 {
+            margin-top: 0;
+            padding: 0;
+            border: 0;
+            font-size: 1.1rem;
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 4px 6px 4px 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #fffdf8;
+            border: 1px solid #cbd5c4;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        a {
+            color: #245c49;
+            text-underline-offset: 4px;
+            overflow-wrap: anywhere;
+        }
+
+        /* 虛擬類別 :hover 表示滑鼠移入；:focus-visible 提供鍵盤焦點提示。 */
+        a:hover {
+            color: #784d1b;
+            text-decoration: underline;
+        }
+
+        a:focus-visible, summary:focus-visible {
+            outline: 3px solid #b37d38;
+            outline-offset: 4px;
+        }
+
+        /* 4. 文章章節與盒子模型：margin 為外距，padding 為內距。 */
+        section, aside {
+            margin: 24px 0;
+            padding: 24px 28px;
+            background-color: #fffdf8;
+            border: 1px solid #d9dfd2;
+            border-radius: 6px;
+        }
+
+        h2 {
+            margin: 0 0 18px;
+            padding-left: 12px;
+            border-left: 4px solid #54765d;
+            font-size: 1.4rem;
+            line-height: 1.5;
+        }
+
+        h3 {
+            margin: 22px 0 10px;
+            font-size: 1.1rem;
+        }
+
+        p {
+            margin: 12px 0;
+        }
+
+        ul, ol {
+            padding-left: 1.6em;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        hr {
+            margin: 26px 0;
+            border: 0;
+            border-top: 1px solid #ccd5c6;
+        }
+
+        /* 5. 表格：以 CSS 框線取代 HW05 的 border="1"。 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+            overflow-wrap: anywhere;
+        }
+
+        caption {
+            margin-bottom: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #becdbb;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        thead {
+            background-color: #e1e9db;
+        }
+
+        tbody th {
+            background-color: #f0f3e9;
+        }
+
+        /* 6. 圖片與嵌入媒體：類別區分影片比例與地圖高度。 */
+        figure {
+            margin: 18px 0;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            color: #536359;
+            font-size: 0.85em;
+        }
+
+        iframe {
+            display: block;
+            max-width: 100%;
+            border: 0;
+            border-radius: 4px;
+        }
+
+        .video-frame {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 340px;
+        }
+
+        /* 7. ID 選擇器只設定這個補充區；aside 仍保留原有語意。 */
+        #tips {
+            background-color: #edf0dd;
+            border-left: 5px solid #8b9459;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 32px;
+            padding: 20px 0;
+            border-top: 2px solid #54765d;
+            color: #536359;
+            text-align: center;
+        }
+
+        /* 8. 窄視窗只縮小留白與字級，所有 CSS 仍在同一個 style 元素。 */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 12px;
+                font-size: 16px;
+            }
+
+            header, nav, section, aside {
+                padding: 20px 16px;
+            }
+
+            h1 {
+                font-size: 1.65rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+        第六次作業：一頁式台中公園報導。
+        本範例延續 HW05 的 HTML 語意結構，加入 CSS 配色、文字與盒子模型。
+        方法一：在個別元素的 style 屬性內寫行內樣式；本頁共有三處示範。
+        方法二：在 head 的 style 元素內集中撰寫共用規則。
+        所有自寫 CSS 都在本 HTML；不載入外部 CSS，不使用 @import 或自寫 JavaScript。
+        YouTube 與 Google 地圖是外部服務，服務內部可能使用自己的 CSS 與 JavaScript。
+        語意元素描述內容用途；本次的視覺外觀由 CSS 決定。
+        註解使用「小於符號、驚嘆號、兩個連字號」開始，並以兩個連字號及大於符號結束。
+        註解不會顯示於網頁，但讀者可從原始碼看見，因此不要放私人資料。
+        使用一致的四個空格縮排；成對標籤都明確寫出結束標籤。
+    -->
+
+  <!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>帝國製糖廠臺中營業所：工業遺產的新生</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fdfdfd;
+        }
+        header {
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .subtitle {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        .lead {
+            font-size: 1.15em;
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 15px;
+        }
+        .meta {
+            font-size: 0.9em;
+            color: #666;
+            background: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+        }
+        nav {
+            background: #f4f6f7;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav h2 {
+            font-size: 1.2em;
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        nav ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        nav li {
+            margin-bottom: 5px;
+        }
+        nav a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        .media-container, .map-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Tỷ lệ 16:9 */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            margin-top: 15px;
+        }
+        .media-container iframe, .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        figure {
+            margin: 15px 0;
+            text-align: center;
+        }
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        figcaption {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        footer {
+            border-top: 1px solid #eaeaea;
+            padding-top: 20px;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>帝國製糖廠臺中營業所：工業遺產的新生</h1>
+        <div class="subtitle">城市走讀・歷史地標・產業文化</div>
+        <div class="lead">從日治時期的糖業重鎮到Lalaport旁的藝文綠帶，一起閱讀臺中的工業歷史記憶。</div>
+        <div class="meta">
+            <strong>本期焦點：</strong>百年製糖歷史與空間美學，從景點報導延伸到位置地圖。<br>
+            <strong>作者：</strong>HW06_D1496708_阮娥媚
+ | <strong>報導整理日期：</strong>2026年10月21日<br>
+            <em>本文為資料整理型教學報導，非現場採訪紀錄。</em>
+        </div>
+    </header>
+
+    <main>
+        <nav aria-label="報導目錄">
+            <h2>報導目錄</h2>
+            <ul>
+                <li><a href="#intro">一、製糖廠簡介</a></li>
+                <li><a href="#features">二、景點特色與散步順序</a></li>
+                <li><a href="#table-section">三、景點比較表</a></li>
+                <li><a href="#photos">四、製糖廠照片</a></li>
+                <li><a href="#video">五、影音報導</a></li>
+                <li><a href="#map">六、位置地圖：找到帝國製糖廠</a></li>
+                <li><a href="#tips">七、走讀小提醒</a></li>
+                <li><a href="#sources">八、資料來源</a></li>
+            </ul>
+        </nav>
+
+        <section id="intro">
+            <h2>一、製糖廠簡介</h2>
+            <p>帝國製糖廠臺中營業所位於臺中市東區（鄰近Lalaport商圈及臺中車站），建於1935年（昭和10年），前身為日本製糖株式會社臺中營業所。建築採和洋折衷風格設計，見證了日治時期臺中作為臺灣糖業發展的重要樞紐地位。</p>
+            <p>經過修復與活化後，目前園區結合了歷史展覽、文創市集與餐飲空間，保留了工業遺產的粗獷結構，同時融入現代休閒氛圍，成為市民與遊客認識地方歷史的重要據點。</p>
+            <p><strong>公園地址：</strong>臺中市東區帝國路35號<br>
+            <strong>閱讀重點：</strong>工業遺產、歷史地標、文創綠地。</p>
+        </section>
+
+        <section id="features">
+            <h2>二、景點特色與散步順序</h2>
+            <h3>值得留意的三個特色</h3>
+            <ul>
+                <li><strong>歷史建築：</strong>保留完整的帝國製糖廠辦公廳舍，展現昭和時期的洋風工業建築美學與磚造細節。</li>
+                <li><strong>生態湖景：</strong>結合湧泉公園與星泉湖（前臺中糖廠沉澱池），提供市區難得的親水綠帶與豐富生態。</li>
+                <li><strong>文創聚落：</strong>廠區內部常態性舉辦文創展覽與特色市集，打造新舊交融的休閒空間。</li>
+            </ul>
+
+            <h3>建議散步順序</h3>
+            <ol>
+                <li>抵達園區後，先閱讀現場導覽資訊，確認各展區與建築物位置。</li>
+                <li>漫步至星泉湖畔，觀察湖面倒影與周邊現代商場的強烈對比。</li>
+                <li>進入帝國製糖廠本棟，參觀歷史常設展並了解製糖產業脈絡。</li>
+                <li>走訪戶外文創市集或綠地草皮，最後在休憩空間整理今日的觀察。</li>
+            </ol>
+        </section>
+
+        <section id="table-section">
+            <h2>三、景點比較表</h2>
+            <p>下表整理園區內三處主要空間的特色與觀察重點：</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>區域名稱</th>
+                        <th>主要特色</th>
+                        <th>建議觀察重點</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>本棟展館</strong></td>
+                        <td>日治時期洋風辦公廳舍與常設展</td>
+                        <td>建築外觀結構、磚造細節與內部歷史展覽</td>
+                    </tr>
+                    <tr>
+                        <td><strong>星泉湖畔</strong></td>
+                        <td>前糖廠沉澱池改造的生態親水空間</td>
+                        <td>湖面生態、水岸倒影與城市天際線交融</td>
+                    </tr>
+                    <tr>
+                        <td><strong>戶外廣場</strong></td>
+                        <td>假日市集與文創活動舉辦場地</td>
+                        <td>新舊建築交融的景觀視野與活動氛圍</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="photos">
+            <h2>四、製糖廠照片</h2>
+            <figure>
+                <img src="https://www.economic.taichung.gov.tw/media/557401/01%E6%AD%B7%E5%8F%B2%E5%BB%BA%E7%AF%89%E5%B8%9D%E5%9C%8B%E8%A3%BD%E7%B3%96%E5%BB%A0%E8%87%BA%E4%B8%AD%E7%87%9F%E6%A5%AD%E6%89%80.jpg" alt="帝國製糖廠臺中營業所歷史建築外觀">
+                <figcaption>圖：帝國製糖廠臺中營業所建築外觀與歷史風貌</figcaption>
+            </figure>
+        </section>
+
+        <section id="video">
+            <h2>五、影音報導</h2>
+            <p>透過下方影片認識帝國製糖廠臺中營業所，再比較影片畫面與本文介紹的景點。</p>
+            <div class="media-container">
+                <iframe src="https://www.youtube.com/embed/C7e-1KUU8uc" title="探索台中帝國製糖廠，10分鐘台中線上旅行" allowfullscreen></iframe>
+            </div>
+            <p><small>影片來源：<a href="https://youtu.be/C7e-1KUU8uc" target="_blank">Yalin&John生活體驗營 - 探索台中帝國製糖廠</a>（另開分頁）。現場狀況以最新官方資訊為準。</small></p>
+        </section>
+
+        <section id="map">
+            <h2>六、位置地圖：找到帝國製糖廠</h2>
+            <p>帝國製糖廠位於臺中市東區，地址為帝國路35號。下方地圖標示本文介紹的位置，方便讀者對照景點與周邊街道。</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.852445690327!2d120.69085697626922!3d24.135240278401083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d22b270a317%3A0xc3f0b2f671c6a2c0!2z帝國製糖廠臺中營業所!5e0!3m2!1szh-TW!2stw!4v1700000000000!5m2!1szh-TW!2stw" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <p><a href="https://maps.app.goo.gl/3HhZ2qM7NfS8v6b96" target="_blank">在Google地圖開啟帝國製糖廠臺中營業所 (另開分頁)</a></p>
+        </section>
+
+        <aside>
+            <h2>走讀小提醒</h2>
+            <p><strong>出發前與走讀時，記得這三事：</strong></p>
+            <ul>
+                <li>攜帶飲用水，依天氣準備防曬或雨具（戶外廣場日照較強）。</li>
+                <li>在水岸邊留意安全，尊重歷史古蹟並保持環境整潔。</li>
+                <li>以文字或照片記錄觀察；若寫入報導，區分現場觀察與引用資料。</li>
+            </ul>
+        </aside>
+
+        <section id="sources">
+            <h2>七、資料來源</h2>
+            <ul>
+                <li>臺中市文化資產處：帝國製糖廠臺中營業所介紹</li>
+                <li>交通部觀光署 / 臺中觀光旅遊網</li>
+                <li>YouTube：<a href="https://youtu.be/C7e-1KUU8uc" target="_blank">Yalin&John生活體驗營 - 探索台中帝國製糖廠</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>第五次HTML作業範例 | 帝國製糖廠臺中營業所報導</p>
+        <p>作者：HTML課程學生 | 更新日期：2026年10月14日</p>
+        <p><small>文字依來源整理；照片與影片權利屬原作者。本文為課堂示範。</small></p>
+    </footer>
+
+</body>
+</html>
